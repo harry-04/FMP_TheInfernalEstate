@@ -13,7 +13,7 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
@@ -27,6 +27,16 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
-        
+
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            mouseSensitivity = 0f;
+        }
+        else
+        {
+            mouseSensitivity = 500f;
+        }
+
+
     }
 }

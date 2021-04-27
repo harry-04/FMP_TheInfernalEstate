@@ -42,6 +42,15 @@ public class PlayerMove : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-        
+
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            PlayerSpeed = 0f;
+        }
+        else
+        {
+            PlayerSpeed = 5f;
+        }
+
     }
 }
