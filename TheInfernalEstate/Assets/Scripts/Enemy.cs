@@ -1,28 +1,21 @@
-﻿//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+﻿using UnityEngine;
 
-//[RequireComponent(typeof(CharacterStats))]
-//public class Enemy : Interactable
-//{
+public class Enemy : MonoBehaviour
+{
+    public float health = 50f;
 
-  //  PlayerManager playerManager;
-    //CharacterStats myStats;
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+        if (health <= 0f)
+        {
+            EnemyDie();
+        }
+    }
 
-    //void Start()
-    //{
-     //   playerManager = PlayerManager.instance;
-      //  myStats = GetComponent<CharacterStats>();
-    //}
 
-//   public override void Interact()
-  //  {
-    //    base.Interact();
-        //Attack the enemy
-      //  CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
-        //if(playerCombat != null)
-        //{
-       //     playerCombat.Attack(myStats);
-        //}
-    //}
-//}
+    void EnemyDie()
+    {
+        Destroy(gameObject);
+    }
+}
