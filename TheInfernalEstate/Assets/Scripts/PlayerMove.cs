@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public int maxHealth = 10;
+    public int currentHealth;
+    public HealthBar healthBar;
+
+
+
     public CharacterController controller;
 
     public float PlayerSpeed = 12f;
@@ -17,6 +23,23 @@ public class PlayerMove : MonoBehaviour
     Vector3 velocity;
     bool isGrounded;
 
+
+
+    private void OnControllerColliderHit (ControllerColliderHit col)
+    {
+        string player = col.gameObject.tag;
+
+        if (player == "TestCube")
+        {
+            Debug.Log("SOMETHING");
+        }
+    }
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+    }
 
     void Update()
     {
@@ -52,5 +75,26 @@ public class PlayerMove : MonoBehaviour
             PlayerSpeed = 5f;
         }
 
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(1);
+        }
+
     }
+
+
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
+    }
+
+
+
+    
+
 }
